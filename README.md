@@ -2,7 +2,7 @@
 
 Fork and clone this repo. On your fork, answer and commit the follow questions. When you are finished, submit the link to your repo on Canvas.
 
-## Question 1
+## Question 1- done
 
 Write a function named `applyKTimes` that takes an integer `K` and a closure and calls the closure K times. The closure will not take any parameters and will not have a return value.
 
@@ -24,9 +24,18 @@ Hello Closures!
 Hello Closures!
 Hello Closures!
 ```
+```
+func applyKTimes(_ K: Int, _ closure : () -> ()) {
+for _ in 0..<K {
+closure()
+}
+}
 
+applyKTimes(9) { print("Hello Closures!")}
 
-## Question 2
+```
+
+## Question 2 - done
 
 Use `filter` to create an array called `multiples` that contains all the multiples of 3 from `numbers` and then print it.
 
@@ -36,9 +45,12 @@ Example:
 Input: `let numbers = [1, 2, 3, 4, 6, 8, 9, 3, 12, 11]`
 
 Expected values: `multiples = [3, 6, 9, 3, 12]`
+```
+var multiplesOfThree = numbers.filter ({$0 % 3 == 0}
+print multiplesOfThree
+```
 
-
-## Question 3
+## Question 3 done
 
 Find the largest number from `numbers` and then print it. Use `reduce` to solve this exercise.
 
@@ -46,19 +58,29 @@ Example:
 Input: `let numbers = [4, 7, 1, 9, 6, 5, 6, 9]`
 
 Output: `9`
+```
+var largestNum = numbers.reduce(Int.min,{max($0,$1)})
+print(largestNum)
+```
 
-
-## Question 4
-
+## Question 4 done
 Join all the strings from `strings` into one using `reduce`. Add spaces in between strings. Print your result.
 
 Example:
 Input: `let strings = ["We", "Heart", "Swift"]`
 
 Output: `"We Heart Swift"`
+```
+let strings = ["We","Heart","Swift"]
+
+var joinedStrings = strings.reduce(String(), {$0 + " " + $1})
+
+print(joinedStrings)
+
+```
 
 
-## Question 5
+## Question 5 done
 
 `let cities = ["Shanghai", "Beijing", "Delhi", "Lagos", "Tianjin", "Karachi", "Karachi", "Tokyo", "Guangzhou", "Mumbai", "Moscow", "São Paulo"]`
 
@@ -68,17 +90,34 @@ b. Use `sortedBy` to sort `cities` alphabetical order of the second character of
 
 c. Use `sortedBy` to sort `cities` in order of the length of the city name.
 
+```
+let alphabeticalOrder = cities.sorted(by: < )
+print(alphabeticalOrder)
 
-## Question 6
+let secondCharacter = cities.sorted(by: {$0.dropFirst() > $1.dropFirst()})
+print(secondCharacter)
+
+let lengthOfCity = cities.sorted(by: {$0.count > $1.count})
+print(lengthOfCity)
+```
+## Question 6 done
 
 `let citiesWithPopulation: [(String, Int)] = [("Shanghai", 24256800), ("Beijing", 21516000), ("Delhi", 16787941), ("Lagos", 16060303), ("Tianjin", 15200000), ("Karachi", 14910352), ("Karachi", 14160467), ("Tokyo", 13513734), ("Guangzhou", 13080500), ("Mumbai", 12442373), ("Moscow", 12380664), ("São Paulo", 12038175)]`
 
 a. Use `sortedBy` to sort `citiesWithPopulation` in ascending order of population.
 
 b. Use `sortedBy` to sort `citiesWithPopulation` in reverse alphabetical order of the last character in the city name.
+```
+let  popuation = citiesWithPopulation.sorted(by: {$0.1 > $1.1})
+print(popuation)
+
+let reverseAlphabeticalOrder = citiesWithPopulation.sorted(by: {String($0.0.reversed()) > String($1.0.reversed())})
+print(reverseAlphabeticalOrder)
+
+```
 
 
-## Question 7
+## Question 7 todo
 
 Sort `numbers` in ascending order by the number of divisors. If two numbers have the same number of divisors the order in which they appear in the sorted array does not matter.
 
@@ -100,7 +139,8 @@ numbers = [1, 2, 3, 5, 4, 6]
 ```
 
 
-## Question 8
+
+## Question 8 done
 
 Find the sum of the squares of all the odd numbers from `numbers` and then print it.
 
@@ -119,8 +159,29 @@ Input: `var numbers = [1, 2, 3, 4, 5, 6]`
 
 Output: `35 // 1 + 9 + 25 -> 35`
 
+```
+var oddNum = [Int]()
+for num in numbers where num % 2 != 0 {
+oddNum = [num]
+}
 
-## Question 9
+
+var squareNum = [Int]()
+for i in oddNum {
+squareNum = [i * i]
+}
+
+var sum = Int()
+for i in squareNum{
+sum += i
+}
+
+var squareOfOddNum = numbers.filter({$0 % 2 == 0}).map({$0 * $0}).reduce(0, +)
+print(squareOfOddNum)
+
+```
+
+## Question 9 done
 
 Implement a function `forEach(array: [Int], _ closure: Int -> ())` that takes an array of integers and a closure and runs the closure for each element of the array.
 
@@ -141,7 +202,14 @@ Output:
 9
 16
 ```
-
+```
+func forEach(array: [Int], _ closure: (Int) -> ()) {
+for i in array {
+closure(i)
+}
+}
+forEach(array: [1, 2, 3, 4]) {print($0 * $0)}
+```
 ## Question 10
 
 Implement a function `combineArrays` that takes 2 arrays and a closure that combines 2 Ints into a single Int. The function combines the two arrays into a single array using the provided closure. Assume that the 2 arrays have equal length.
