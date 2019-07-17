@@ -210,7 +210,7 @@ closure(i)
 }
 forEach(array: [1, 2, 3, 4]) {print($0 * $0)}
 ```
-## Question 10
+## Question 10 done
 
 Implement a function `combineArrays` that takes 2 arrays and a closure that combines 2 Ints into a single Int. The function combines the two arrays into a single array using the provided closure. Assume that the 2 arrays have equal length.
 
@@ -226,9 +226,19 @@ combineArrays(array1,array2) {
 ```
 
 Output: `[5,10,15,12]`
+```
+func combinedArrays(a: [Int], b: [Int], _ closure: (Int, Int) -> Int) -> [Int] {
+var multiplication: [Int] = []
+for i in 0..<a.count {
+multiplication.append(closure(a[i],b[i]))
+}
+return multiplication
+}
 
+print(combinedArrays(a: array1, b: array2, { $0 * $1}))
+```
 
-## Question 11
+## Question 11 
 
 a) Write a function called `intsToStrings` that takes an array of Ints and a closure as parameters and returns an array of Strings. The closure should take an Int and return a String. The function should apply the closure to the ints in the array.
 
@@ -286,7 +296,10 @@ let descendingOrder =
 a) Sort `arrayOfArrays` in ascending order by the **3rd element** in each array. You can assume each array will have at least 3 elements.
 
 b) Sort `arrayOfArrays` in ascending order by the 3rd element in each array. Don't assume each array will have at least 3 elements. Put all arrays that have less than 3 elements at the end in any order.
-
+```
+let sortByThird = arrayOfArrays.sorted(by: {$0[2] < $1[2]})
+print(sortByThird)
+```
 
 ## Question 14
 
